@@ -8,7 +8,7 @@
 from django.db import models
 
 
-
+# *购物车
 class AxfCart(models.Model):
     c_goods_num = models.IntegerField()
     c_is_select = models.IntegerField()
@@ -20,6 +20,7 @@ class AxfCart(models.Model):
         db_table = 'axf_cart'
 
 
+# *商品类型
 class AxfFoodtype(models.Model):
     typeid = models.IntegerField()
     typename = models.CharField(max_length=32)
@@ -31,6 +32,7 @@ class AxfFoodtype(models.Model):
         db_table = 'axf_foodtype'
 
 
+# *商品表
 class AxfGoods(models.Model):
     productid = models.IntegerField()
     productimg = models.CharField(max_length=255)
@@ -53,6 +55,7 @@ class AxfGoods(models.Model):
         db_table = 'axf_goods'
 
 
+# 主要商品展示表（一行三个）
 class AxfMainshow(models.Model):
     img = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
@@ -83,6 +86,7 @@ class AxfMainshow(models.Model):
         db_table = 'axf_mainshow'
 
 
+# 必买推荐商品表
 class AxfMustbuy(models.Model):
     img = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
@@ -103,6 +107,7 @@ class AxfNav(models.Model):
         db_table = 'axf_nav'
 
 
+# *订单
 class AxfOrder(models.Model):
     o_price = models.FloatField()
     o_time = models.DateTimeField()
@@ -114,6 +119,7 @@ class AxfOrder(models.Model):
         db_table = 'axf_order'
 
 
+# 订单商品
 class AxfOrdergoods(models.Model):
     o_goods_num = models.IntegerField()
     o_goods = models.ForeignKey(AxfGoods, models.DO_NOTHING, blank=True, null=True)
@@ -124,6 +130,7 @@ class AxfOrdergoods(models.Model):
         db_table = 'axf_ordergoods'
 
 
+# 购物表
 class AxfShop(models.Model):
     img = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
@@ -134,6 +141,7 @@ class AxfShop(models.Model):
         db_table = 'axf_shop'
 
 
+# *用户
 class AxfUser(models.Model):
     u_username = models.CharField(unique=True, max_length=32)
     u_password = models.CharField(max_length=256)
@@ -146,6 +154,7 @@ class AxfUser(models.Model):
         db_table = 'axf_user'
 
 
+# 轮播图表
 class AxfWheel(models.Model):
     img = models.CharField(max_length=255)
     name = models.CharField(max_length=64)
@@ -154,5 +163,3 @@ class AxfWheel(models.Model):
     class Meta:
         managed = False
         db_table = 'axf_wheel'
-
-
