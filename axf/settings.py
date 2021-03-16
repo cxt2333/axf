@@ -36,10 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'django_filters',
     'market',
     'cart',
     'user',
-    'home'
+    'home',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,26 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
 )
+
+ORDER_RULE_LIST = [
+    {'order_name': '综合排序', 'order_value': 0},
+    {'order_name': '价格升序', 'order_value': 1},
+    {'order_name': '价格降序', 'order_value': 2},
+    {'order_name': '销量升序', 'order_value': 3},
+    {'order_name': '销量降序', 'order_value': 4},
+]
+
+REST_FRAMEWORK = {
+    # 过滤器支持
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+}
+
+# 订单状态
+# 已下订单未支付
+ORDER_STATUS_NOT_PAY = 0
+# 已下单已支付
+ORDER_STATUS_PAY = 1
+# 已付款未发货
+ORDER_STATUS_NOT_SEND = 2
+# 已发货未收货
+ORDER_STATUS_NOT_RECEIVE = 3

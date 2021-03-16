@@ -17,9 +17,10 @@ Including another URLconf
 from django.urls import path
 from market import views
 
-
 app_name = 'market'
 urlpatterns = [
-    # 商品类型
-    path('goodtype/',views.GoodTypeListView.as_view(), name='goodtype'),
+    # 商品类型,左边分类栏
+    path('foodtype/', views.GoodTypeListView.as_view(), name='goodtype'),
+    # 商品信息列表
+    path('market/', views.GoodListView.as_view(), name='market'),
 ]

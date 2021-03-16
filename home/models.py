@@ -107,10 +107,27 @@ class AxfNav(models.Model):
         db_table = 'axf_nav'
 
 
+""""
+订单状态
+# 已下单未支付
+ORDER_STATUS_NOT_PAY = 0
+# 已下单已支付
+ORDER_STATUS_PAY = 1
+# 已付款未发货
+ORDER_STATUS_NOT_SEND = 2
+# 已发货未收货
+ORDER_STATUS_NOT_RECEIVE = 3
+# 已收货未确认
+# 已收货已确认未评价
+# 已确认已评价
+# 已确认已评价未追评
+"""
+
+
 # *订单
 class AxfOrder(models.Model):
     o_price = models.FloatField()
-    o_time = models.DateTimeField()
+    o_time = models.DateTimeField(auto_now=True)
     o_status = models.IntegerField()
     o_user = models.ForeignKey('AxfUser', models.DO_NOTHING, blank=True, null=True)
 
@@ -123,7 +140,7 @@ class AxfOrder(models.Model):
 class AxfOrdergoods(models.Model):
     o_goods_num = models.IntegerField()
     o_goods = models.ForeignKey(AxfGoods, models.DO_NOTHING, blank=True, null=True)
-    o_order = models.ForeignKey(AxfOrder, models.DO_NOTHING, blank=True, null=True)
+    o_order = models.ForeignKey(AxfOrder, models.DO_NOTHING, blank=True, null=True, related_name='goods')
 
     class Meta:
         managed = False
@@ -146,7 +163,7 @@ class AxfUser(models.Model):
     u_username = models.CharField(unique=True, max_length=32)
     u_password = models.CharField(max_length=256)
     u_email = models.CharField(unique=True, max_length=64)
-    is_active = models.IntegerField()
+    is_active = models.IntegerField(default=1)
     is_delete = models.IntegerField()
 
     class Meta:

@@ -9,9 +9,16 @@
 '''
 
 from rest_framework import serializers
+from home.models import AxfFoodtype,AxfGoods
 
-from home.models import AxfFoodtype
+
 class GoodTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = AxfFoodtype
+        fields = "__all__"
+
+
+class GoodsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AxfGoods
         fields = "__all__"

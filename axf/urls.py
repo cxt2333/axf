@@ -17,6 +17,10 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    path('home/', include('home.urls')),
-    path('market/', include("market.urls")),
+    path('api/goods/', include('home.urls')),
+    path('api/goods/', include("market.urls")),
+    path('api/user/', include("user.urls")),
+    path('api/cart/', include("cart.urls")),
+    path('api/orders/', include("order.urls")),
+
 ]
